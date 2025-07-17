@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, type Dispatch, type ReactNode, type SetStateAction } from 'react';
 
-function PeriodSelector() {
-  const [period, setPeriod] = useState<string>('all'); 
+function PeriodSelector({period,setPeriod}:{period:string,setPeriod:Dispatch<SetStateAction<string>>}) { 
 
   const periods = [
     { label: 'Monthly', value: 'month' },

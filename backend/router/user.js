@@ -6,6 +6,7 @@ router.route("/")
 .post(
     async (req,res)=>{
         const userName = req.body.name;
+        const img = req.body.img;
         if(!userName){
             res.status(401).json({
                 message:"invalid request body"
@@ -17,6 +18,7 @@ router.route("/")
             const newUser = await Users.create({
                 name:userName,
                 totalPoints:0,
+                imgUrl:img
             })
 
             res.json({

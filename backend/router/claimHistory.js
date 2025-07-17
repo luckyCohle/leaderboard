@@ -18,7 +18,7 @@ router.route("/leaderboard/:period").get(async (req, res) => {
         if (period === "all") {
             // Fetch from users collection
             leaderboard = await Users.find({})
-                .select("name totalPoints")
+                .select("name totalPoints imgUrl") // 👈 use imgUrl here
                 .sort({ totalPoints: -1 })
                 .limit(10);
         } else {
@@ -41,6 +41,27 @@ router.route("/leaderboard/:period").get(async (req, res) => {
                         name: { $first: "$userName" },
                         totalPoints: { $sum: "$pointsAwarded" },
                     },
+                },
+                {
+                    $lookup: {
+                        from: "users", // 👈 collection name in MongoDB
+                        localField: "_id",
+                        foreignField: "_id",
+                        as: "userDetails"
+                    }
+                },
+                {
+                    $addFields: {
+                        imgUrl: { $arrayElemAt: ["$userDetails.imgUrl", 0] } // 👈 add imgUrl
+                    }
+                },
+                {
+                    $project: {
+                        _id: 1,
+                        name: 1,
+                        totalPoints: 1,
+                        imgUrl: 1 // 👈 project it
+                    }
                 },
                 { $sort: { totalPoints: -1 } },
                 { $limit: 10 },
