@@ -1,11 +1,13 @@
 import './App.css'
-
+import Navbar from '../components/Navbar'
+import PeriodSelector from '../components/PeriodSelector'
 function App() {
 
   return (
     <>
-     <div className=''>
-
+     <div className='w-full h-full'>
+      <Navbar/>
+      <PeriodSelector/>
      </div>
     </>
   )
