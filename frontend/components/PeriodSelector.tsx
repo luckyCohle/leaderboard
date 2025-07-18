@@ -9,12 +9,12 @@ function PeriodSelector({period,setPeriod}:{period:string,setPeriod:Dispatch<Set
   ];
 
   return (
-    <div className='h-14 flex justify-around py-4 gap-4 w-full'>
+    <div className='sm:h-14 h-10 flex justify-around py-2 gap-2 sm:py-4 sm:gap-4 w-full'>
       {periods.map(p => (
         <p
           key={p.value}
           onClick={() => setPeriod(p.value)}
-          className={`cursor-pointer text-blue-400 text-xl font-bold ${
+          className={`cursor-pointer text-blue-400  sm:text-xl font-bold ${
             period === p.value ? 'underline underline-offset-4 decoration-2 decoration-blue-500' : ''
           }`}
         >

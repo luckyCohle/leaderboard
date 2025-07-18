@@ -19,7 +19,7 @@ export const getPlayerListStyles = (rank: number) => {
   // utils/style.js
 export const getPlayerStyles = (rank:number) => {
 
-  const containerSize = 'w-16 h-16'
+  const containerSize = 'w-12 h-12 sm:w-16 sm:h-16'
   switch(rank) {
     case 1:
       return {
@@ -28,7 +28,7 @@ export const getPlayerStyles = (rank:number) => {
         bgColor: 'bg-yellow-400',
         borderColor: 'border-yellow-300',
         textColor: 'text-yellow-400',
-        nameSize: 'text-xl',
+        nameSize: 'sm:text-xl',
         showCrown: true,
         glowEffect: 'shadow-2xl shadow-yellow-500/50'
       };
@@ -39,7 +39,7 @@ export const getPlayerStyles = (rank:number) => {
         bgColor: 'bg-gray-300',
         borderColor: 'border-gray-300',
         textColor: 'text-gray-300',
-        nameSize: 'text-lg',
+        nameSize: 'text-xs sm:text-lg',
         showCrown: false,
         glowEffect: 'shadow-xl shadow-gray-500/30'
       };
@@ -50,7 +50,7 @@ export const getPlayerStyles = (rank:number) => {
         bgColor: 'bg-orange-400',
         borderColor: 'border-orange-400',
         textColor: 'text-orange-400',
-        nameSize: 'text-lg',
+        nameSize: 'text-xs text-lg',
         showCrown: false,
         glowEffect: 'shadow-xl shadow-orange-500/30'
       };

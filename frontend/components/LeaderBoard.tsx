@@ -37,7 +37,7 @@ function LeaderBoard({ period }: { period: string }) {
 
 
   return (
-    <div className='h-full max-full rounded-3xl border-2 border-slate-600 bg-slate-800 mx-5 overflow-hidden'>
+    <div className='h-full max-full rounded-3xl border-2 border-slate-600 bg-slate-800 mx-2 sm:mx-5 overflow-hidden'>
       {/* Header */}
       <div className="flex items-center justify-center h-16 py-4 border-b border-slate-700">
         <h1 className="text-white text-2xl font-bold">Leaderboard</h1>

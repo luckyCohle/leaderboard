@@ -58,7 +58,7 @@ function Navbar() {
           onClick={() => setShowDropdown((prev) => !prev)}
           className="bg-green-600 hover:bg-green-700 text-white font-semibold px-3 py-1 sm:px-6 sm:py-2 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200"
         >
-          <p className="text-sm sm:text-xl"> + Add Player</p>
+          <p className="text-xs sm:text-xl"> + Add Player</p>
         </button>
 
         {/* Dropdown panel */}
