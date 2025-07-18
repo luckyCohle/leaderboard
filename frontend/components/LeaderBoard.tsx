@@ -1,7 +1,6 @@
 /// <reference types="vite/client" />
 
 import React, { useEffect, useState } from 'react'
-import { getPlayerStyles } from '../utils/style';
 import type { PlayerType } from '../utils/types';
 import TopThree from './TopThree';
 import PlayerList from './PlayerList';
@@ -14,7 +13,7 @@ function LeaderBoard({ period }: { period: string }) {
   async function getData() {
       try {
         const url = import.meta.env.VITE_BACKEND_URL;
-    console.log("url=> " + url);
+        console.log("url=> " + url);
         const response = await axios.get(`${url}/claim/leaderboard/${period}`);
         console.log("response.data =>", response.data);
         const playerArray: PlayerType[] = response.data.leaderboard.map((player: any, index: number) => ({

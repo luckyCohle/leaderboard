@@ -6,6 +6,14 @@ function Navbar() {
   const [imgUrl, setImgUrl] = useState("");
   const dropdownRef = useRef(null);
 
+  // Runs in any React component or in your entry file
+const isFirstVisit = !sessionStorage.getItem('hasVisited');
+
+if (isFirstVisit) {
+  alert("please wait for 1 minute for the deployed backend to become ative")
+  sessionStorage.setItem('hasVisited', 'true');
+} 
+
   // Close dropdown when clicking outside
   useEffect(() => {
     const handler = (e: MouseEvent) => {

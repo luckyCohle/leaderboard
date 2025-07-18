@@ -5,6 +5,7 @@ import LeaderBoard from "../components/LeaderBoard"
 import { useState } from 'react';
 function App() {
   const [period, setPeriod] = useState<string>('all');
+
   return (
     <>
      <div className='w-full h-full flex-col items-center'>
