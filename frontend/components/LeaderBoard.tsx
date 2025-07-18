@@ -11,25 +11,26 @@ import axios from 'axios';
 
 function LeaderBoard({ period }: { period: string }) {
   const [players, setPlayers] = useState<PlayerType[]>([]);
-  useEffect(() => {
-    const url = import.meta.env.VITE_BACKEND_URL;
-    console.log("url=> " + url);
-    async function getData() {
+  async function getData() {
       try {
+        const url = import.meta.env.VITE_BACKEND_URL;
+    console.log("url=> " + url);
         const response = await axios.get(`${url}/claim/leaderboard/${period}`);
         console.log("response.data =>", response.data);
         const playerArray: PlayerType[] = response.data.leaderboard.map((player: any, index: number) => ({
           rank: index + 1,
+          id:player._id,
           name: player.name,
           points: player.totalPoints,
           imgUrl: player.imgUrl,
         }));
 
-        setPlayers(playerArray);
+        setPlayers([...playerArray]);
       } catch (error) {
         console.error("Failed to fetch leaderboard:", error);
       }
     }
+  useEffect(() => {    
     getData()
   }, [period])
 
@@ -48,7 +49,7 @@ function LeaderBoard({ period }: { period: string }) {
         <TopThree topThree={players.slice(0, 3)} />
 
         {/* all Players */}
-        <PlayerList players={players} />
+        <PlayerList players={players} getData={getData} />
       </div>
     </div>
   );

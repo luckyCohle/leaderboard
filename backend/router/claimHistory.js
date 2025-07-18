@@ -18,9 +18,9 @@ router.route("/leaderboard/:period").get(async (req, res) => {
         if (period === "all") {
             // Fetch from users collection
             leaderboard = await Users.find({})
-                .select("name totalPoints imgUrl") // 👈 use imgUrl here
+                .select("name totalPoints imgUrl") 
                 .sort({ totalPoints: -1 })
-                .limit(10);
+                .limit(20);
         } else {
             const now = new Date();
             let dateFilter;
@@ -44,7 +44,7 @@ router.route("/leaderboard/:period").get(async (req, res) => {
                 },
                 {
                     $lookup: {
-                        from: "users", // 👈 collection name in MongoDB
+                        from: "users", 
                         localField: "_id",
                         foreignField: "_id",
                         as: "userDetails"
@@ -52,7 +52,7 @@ router.route("/leaderboard/:period").get(async (req, res) => {
                 },
                 {
                     $addFields: {
-                        imgUrl: { $arrayElemAt: ["$userDetails.imgUrl", 0] } // 👈 add imgUrl
+                        imgUrl: { $arrayElemAt: ["$userDetails.imgUrl", 0] }
                     }
                 },
                 {
@@ -60,11 +60,11 @@ router.route("/leaderboard/:period").get(async (req, res) => {
                         _id: 1,
                         name: 1,
                         totalPoints: 1,
-                        imgUrl: 1 // 👈 project it
+                        imgUrl: 1
                     }
                 },
                 { $sort: { totalPoints: -1 } },
-                { $limit: 10 },
+                { $limit: 20 },
             ]);
         }
 
@@ -84,11 +84,16 @@ router.route('/history').post(
             return;
         }
         try {
-            const claim = Claims.create({
+            const claim = await Claims.create({
                 pointsAwarded:points,
                 userId,
                 userName:username
             })
+            await Users.updateOne(
+                {_id:userId},//find the user
+                {$inc:{totalPoints:points}}//updating the total points 
+            )
+
 
             res.send({claim})
         } catch (error) {
