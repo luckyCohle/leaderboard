@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import type { PlayerType } from '../utils/types';
 import TopThree from './TopThree';
 import PlayerList from './PlayerList';

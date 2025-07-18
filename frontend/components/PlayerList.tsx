@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import type { PlayerType } from '../utils/types';
 import { getPlayerListStyles } from '../utils/style';
 import axios from 'axios';

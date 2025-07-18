@@ -1,4 +1,3 @@
-import React from "react";
 import { getPlayerStyles } from "../utils/style";
 import type { PlayerType } from "../utils/types";
 
